@@ -14,7 +14,8 @@ Step by step tutorials creating WCF applications
         - [Step 3 - Adding Service contract and Operation contract in interface](#step-3---adding-service-contract-and-operation-contract-in-interface)
         - [Step 4 - Adding EntityFramework and DbContext](#step-4---adding-entityframework-and-dbcontext)
         - [Step 5 - Service Implementation](#step-5---service-implementation)
-        
+    - Hosting Services
+
 ## Sending Feedback
 
 For feedback can drop mail to my email address amit.naik8103@gmail.com or you can create [issue](https://github.com/Amitpnk/angular-application/issues/new)
@@ -252,3 +253,97 @@ public class CustomerService : ICustomerService, IDisposable
     }
 }
 ```
+
+## Hosting Services
+
+## Step 6 - Configuring endpoints
+
+```xml
+<system.serviceModel>
+    <services>
+        <host>
+            <baseAddresses>
+            <add baseAddress="http://localhost:2112"/>
+            </baseAddresses>
+        </host>
+        <service name="CustomerWCF.Services.CustomerService">
+        <!--external clients over http-->
+        <endpoint address="http://localhost:2112/Customer"
+                    binding="basicHttpBinding"
+                    contract="CustomerWCF.Services.ICustomerService">
+        </endpoint>
+        <!--over sockets for local clients, faster-->
+        <endpoint address="net.tcp://localhost:2113/Customer"
+                    binding="netHttpBinding"
+                    contract="CustomerWCF.Services.ICustomerService">
+        </endpoint>
+        </service>
+    </services>
+<system.serviceModel>
+```
+
+## Step 7 - Configuring behaviors
+
+```xml
+<system.serviceModel>
+    <!-- ... -->
+
+    <behaviors>
+        <serviceBehaviors>
+        <behavior>
+            <serviceMetadata httpGetEnabled="True" httpsGetEnabled="True"/>
+            <serviceDebug includeExceptionDetailInFaults="true"/>
+        </behavior>
+        </serviceBehaviors>
+    </behaviors>
+<system.serviceModel>
+```
+
+## Step 8 - Configuring bindings
+
+```xml
+<system.serviceModel>
+    <!-- ... -->
+
+    <bindings>
+        <basicHttpBinding>
+            <binding maxReceivedMessageSize="2147483647" maxBufferSize="2147483647">
+                <readerQuotas maxArrayLength="2147483647" maxStringContentLength="2147483647" />
+            </binding>
+        </basicHttpBinding>
+        <netHttpBinding>
+            <binding maxReceivedMessageSize="2147483647" maxBufferSize="2147483647">
+                <readerQuotas maxArrayLength="2147483647" maxStringContentLength="2147483647" />
+            </binding>
+        </netHttpBinding>
+    </bindings>
+<system.serviceModel>
+```
+
+## Step 9 - Configuring database connection string
+
+```xml
+<configuration>
+    <connectionStrings>
+    <add name="CustomerDBContext" connectionString="Data Source=(local)\SQLexpress;Initial Catalog=CustomerWCF;Integrated Security=True"
+     providerName="System.Data.SqlClient" />
+    </connectionStrings>
+```
+
+## Step 10 - Hosting in WCF service
+
+* Goto properties -> WCF Options   
+    * Check startup option <b>Start WCF service Host when debugging another project in the same solution</b>
+* Go to properties -> Debug 
+    * Uncomment command line arguements in  Start options
+
+```c#
+/client:"WcfTestClient.exe"
+```
+
+* Open application in Administrator mode and Run the application
+
+## Step 11 - Hosting in Console application
+
+* Create Console application and name it as CustomerWCF.SelfHost
+* Add reference CustomerWCF.Services to CustomerWCF.SelfHost

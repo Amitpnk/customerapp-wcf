@@ -10,10 +10,10 @@ Step by step tutorials creating WCF applications
     - Creating WCF application
         - [Step 1 - Create Application](#step-1---create-application)
     - Implementing Services
-        - [Step 2 - Adding Data contract]s(#step-2---adding-entityframework-via-nuget)
-        - [Step 3 - Adding Service contract and Operation contract in interface](#step-3---adding-migration)
-        - [Step 4 - Adding EntityFramework and DbContext](#step-4---adding-migration)
-        - [Step 5 - Service Implementation](#step-5---script-migration-for-production-db)
+        - [Step 2 - Adding Data contract](#step-2---adding-data-contract)
+        - [Step 3 - Adding Service contract and Operation contract in interface](#step-3---adding-service-contract-and-operation-contract-in-interface)
+        - [Step 4 - Adding EntityFramework and DbContext](#step-4---adding-entityframework-and-dbcontext)
+        - [Step 5 - Service Implementation](#step-5---service-implementation)
         
 ## Sending Feedback
 

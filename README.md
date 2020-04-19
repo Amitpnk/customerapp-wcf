@@ -1,5 +1,24 @@
 # customerapp-wcf
- 
+
+Step by step tutorials creating WCF applications
+
+## Table of Contents
+
+- [Sending Feedback](#sending-feedback)
+- [About WCF](#about-entity-framework-core)
+- [Sample application with each labs](#sample-application-with-each-steps)
+    - Creating WCF application
+        - [Step 1 - Create Application](#step-1---create-application)
+    - Implementing Services
+        - [Step 2 - Adding Data contract]s(#step-2---adding-entityframework-via-nuget)
+        - [Step 3 - Adding Service contract and Operation contract in interface](#step-3---adding-migration)
+        - [Step 4 - Adding EntityFramework and DbContext](#step-4---adding-migration)
+        - [Step 5 - Service Implementation](#step-5---script-migration-for-production-db)
+        
+## Sending Feedback
+
+For feedback can drop mail to my email address amit.naik8103@gmail.com or you can create [issue](https://github.com/Amitpnk/angular-application/issues/new)
+
 ## About WCF
 
 * Windows Communication Foundation 
